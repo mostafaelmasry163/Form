@@ -1,0 +1,150 @@
+@import "config";
+
+body {
+  background: $primary;
+}
+
+h1.logo {
+  color: set-text-color($primary);
+  font-family: "pacifico", cursive;
+  font-size: 4rem;
+  margin: 3rem 0;
+}
+
+h1.end {
+    position: relative;
+    color: set-text-color($primary);
+    opacity: 0;
+    transition: 0.8s ease-in-out;
+}
+
+#container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: top;
+  align-items: center;
+}
+
+#form-box {
+  background: #fff;
+  position: relative;
+  width: 600px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  box-shadow: 0 18px 24px 2px rgba(0, 0, 0, 0.1),
+    0 6px 19px 5px rgba(0, 0, 0, 0.1), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+  @include transition-ease;
+
+  &.close {
+    width: 0;
+    padding: 0;
+    overflow: hidden;
+    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0);
+    @include transition-close;
+  }
+}
+
+#next-btn {
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
+  font-size: 40px;
+  color: $primary;
+  float: right;
+  cursor: pointer;
+  z-index: 2;
+
+  &:hover {
+    color: $sec;
+    @include transition-ease;
+  }
+}
+
+#prev-btn {
+  position: absolute;
+  font-size: 18px;
+  left: 30px;
+  top: 18px;
+  z-index: 2;
+  color: $light;
+  float: right;
+  cursor: pointer;
+
+  &:hover {
+    color: $sec;
+    @include transition-ease;
+  }
+}
+
+#input-grp {
+  position: relative;
+  padding: 30px 20px 20px 20px;
+  margin: 10px 60px 10px 10px;
+  opacity: 0;
+  @include transition-ease;
+
+  input {
+    position: relative;
+    width: 100%;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    outline: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  #input-label {
+    position: absolute;
+    pointer-events: none;
+    top: 32px;
+    left: 29px;
+    font-size: 20px;
+    font-weight: bold;
+    @include transition-ease;
+  }
+  input:valid + #input-label {
+    top: 6px;
+    left: 42px;
+    margin-left: 0 !important;
+    font-size: 16px;
+    font-weight: normal;
+    color: $light;
+  }
+}
+
+#input-prog {
+  border-bottom: 3px solid $primary;
+  width: 0;
+  @include transition-ease;
+}
+
+#prog-bar {
+  position: absolute;
+  background: $sec;
+  height: $prog-height;
+  width: 0;
+  @include transition-ease;
+}
+
+.close {
+    #next-btn, #prev-btn {
+        color: #FFF;
+    }
+}
+.error {
+  #input-prog {
+    border-color: $error;
+  }
+
+  #next-btn {
+    color: $error;
+  }
+}
+
+@include media-xs {
+  #form-box {
+    width: 80%;
+  }
+}
